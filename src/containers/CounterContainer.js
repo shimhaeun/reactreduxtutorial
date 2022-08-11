@@ -1,3 +1,4 @@
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import Counter from "../components/Counter";
 import { increase, decrease } from '../modules/counter';
@@ -22,6 +23,19 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
+    state => ({
+        number: state.counter.number,
+    }),
+    {
+        increase,
+        decrease,
+    },
+    // dispatch =>
+    //     bindActionCreators(
+    //         {
+    //             increase,
+    //             decrease,
+    //         },
+    //         dispatch,
+    //     ),
 )(CounterContainer);
